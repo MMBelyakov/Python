@@ -1,2 +1,3 @@
 print('sdfghjk')
-print('4geargae')
+A=[1,2,3]
+for
