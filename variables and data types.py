@@ -102,7 +102,7 @@ string2 = 'String'
 print(string1,string2)
 
 string = "First line of text. \n"\
-         "Second line of text."
+          "Second line of text."
 print(string)
 
 multiline_string = """Some data types
@@ -129,6 +129,11 @@ print('You have entered "{}"' .format(string))
 print('Press Enter to continue')
 input()
 
-m= int (input('First number: '))
-n= int (input('Second number: '))
+m = int (input('First number: '))
+n = int (input('Second number: '))
 print  ('{} + {} = {}'.format(m,n,m+n))
+
+
+
+
+
