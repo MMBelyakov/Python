@@ -26,7 +26,7 @@ print( a + b )
 
 #dynamic_type
 
-var = ' I am a string'
+var = ' I am a string '
 print(var)
 print( type(var) )
 
