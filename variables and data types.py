@@ -36,6 +36,7 @@ var = 42
 print(var)
 print( type(var) )
 
+
 print()
 
 a = 5
