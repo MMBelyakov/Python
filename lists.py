@@ -89,7 +89,7 @@ string = input("Enter a string:")
 print(len(string))
 
 # append
-my_list = [3, 5, (my_list[0] + my_list[1])]
+my_list = [3, 5, my_list[0] + my_list[1]]
 
 print(my_list)
 
@@ -115,7 +115,7 @@ for x in my_list:
     print("{}^2 = {}".format(x, x ** 2))
 
 # fibonacci
-n = 100
+n = 100000
 fibs = [1, 1]
 for i in range(n - 2):
     fibs.append(fibs[i] + fibs[i + 1])
