@@ -126,5 +126,5 @@ for attempts_left in range(3, 0, -1):
 
 for row in range(5):
     for column in range(30):
-        print("*", end="")
+        print("*" , end="")
     print()
