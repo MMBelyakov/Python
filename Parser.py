@@ -22,15 +22,12 @@ def main():
     time = re.findall(r"[0-2]\d:[0-5]\d", text)
     mes = re.sub('[0-2]\d:[0-5]\d', '', text)
 
-    match = re.search(r'\d{2}.\d{2}.\d{4}', text) #находим дату
+    match = re.search(r'\d{2}.\d{2}.\d{4}', text)
     date = datetime.strptime(match.group(), '%d.%m.%Y').date()
     day_month_year = str(date)
     year =  day_month_year[:4]
     month = day_month_year[5:7]
     day = day_month_year[-2:]
-    print(year)
-    print(month)
-    print(day)
 
     time1 = str(time)
     time_hour = time1[2:4]
