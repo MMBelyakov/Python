@@ -3,26 +3,29 @@ import re
 from datetime import datetime
 from datetime import time
 from datetime import date
-from datetime import timedelta
+import time
+
 
 """MESSAGE={'STATUS': 'SUCCESS', 'DATE': {'year': 2021, 'month': 12, 'day': 13, 'hour': 16, 'minute': 15},
  'TEXT': 'Подписать служебку у начальника'}"""
 
 
 def main():
-    time_minute = None
-    time_hour = None
+    minute = None
+    hour = None
     day = None
     month = None
     year = None
     Day_of_week = None
     Repeat_always = None
+    Text = None
 
     Status = 'Success'
     print("О чём Вам напомнить ?")
     text = input()
 
-    time = re.findall(r"[0-2]\d:[0-5]\d", text)
+
+    Time = re.findall(r"[0-2]\d:[0-5]\d", text)
     mes = re.sub('[0-2]\d:[0-5]\d', '', text)
     rem = re.sub('\d{2}.\d{2}.\d{4}', '', mes)
 
@@ -33,14 +36,24 @@ def main():
     month = day_month_year[5:7]
     day = day_month_year[-2:]
 
-    time1 = str(time)
-    time_hour = time1[2:4]
-    time_minute = time1[5:7]
+    Year = int(year)
+    Month = int(month)
+    Day = int(day)
 
-    current_date = datetime.now()  # текущие:  day month year hour minute
-    current_date_string = current_date.strftime('%d/%m/%Y %H:%M')
 
-    print(current_date_string)
+    time1 = str(Time)
+    hour = time1[2:4]
+    minute = time1[5:7]
+
+    Hour = int(hour)
+    Minute = int(minute)
+
+    current_date = datetime.now().replace(microsecond=0)
+    text_date = datetime(Year,Month,Day,Hour,Minute)
+    delta = text_date - current_date
+    sec = delta.total_seconds()
+    seconds = int(sec)
+    #print(seconds)
 
 
     if ('в понедельник' or 'каждый понедельник' or 'понедельник' or 'Понедельник' or 'по понедельникам') in text:
@@ -64,12 +77,29 @@ def main():
     if ('в воскресенье' or 'каждое воскресенье' or 'воскресенье' or 'Воскресенье' or 'по воскресеньям') in text:
         day = 'Sunday'
 
+    if 'завтра' in text:
+        day+=1
+
+    if 'через неделю' in text:
+        day+=7
+
+    if 'через месяц' in text:
+        month+=1
+
+    if 'через полгода' in text:
+        month+=6
+
+    if 'через год' in text:
+        year+=1
 
 
-    print("Message:{", "'STATUS':", Status, ",", "'DATE':{'year':", year, ",", "'month':", month, ",", "'day':", day, ",", "'hour':", time_hour, ",", "'minute':", time_minute, "}", ",", "'TEXT':",rem, "}", sep='')
 
-    #time.sleep(delta)
+    print("Message:{", "'STATUS':", Status, ",", "'DATE':{'year':", Year, ",", "'month':", Month, ",", "'day':", Day, ",", "'hour':", hour, ",", "'minute':", Minute, "}", ",", "'TEXT':",rem, "}", sep='')
+
+    time.sleep(seconds)
+
     print(rem)
+
 if __name__ == '__main__':
     main()
 
